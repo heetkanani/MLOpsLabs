@@ -20,8 +20,7 @@ app.include_router(prediction_route)
 @app.get("/")
 async def root():
     return {
-        "message": "ML Fast API lab using Iris Datase",
-        "version": configurations.APP_VERSION,
+        "message": "ML Fast API lab using Iris Dataset",
         "docs": "/docs",
         "health": "/health"
     }
