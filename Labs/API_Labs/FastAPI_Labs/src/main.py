@@ -16,6 +16,7 @@ app.include_router(health_check_router)
 app.include_router(iris_data_route)
 app.include_router(prediction_route)
 
+
 @app.get("/")
 async def root():
     return {

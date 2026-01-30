@@ -19,3 +19,4 @@ class Configurations(BaseSettings):
         env_file = ".env"
         case_sensitive = False
 
+
