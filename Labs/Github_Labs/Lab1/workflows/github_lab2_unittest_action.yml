@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -11,18 +14,27 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: 3.8
+
+    - name: Display Python version
+      run: python --version
+
+    - name: Upgrade pip
+      run: pip install --upgrade pip
 
     - name: Install dependencies
       run: pip install -r requirements.txt
 
+    - name: List installed packages
+      run: pip list
+
     - name: Run unittests
-      run: python -m unittest test.test_unittest
+      run: python -m unittest test.test_unittest -v
 
     - name: Notify on success
       if: success()
