@@ -103,11 +103,6 @@ In addition to the basic operations, five more functions have been implemented:
 - **func8(x, y)** - Modulo: Returns the remainder when x is divided by y, with error handling for modulo by zero.
 - **func9(x)** - Square Root: Calculates the square root of x with validation for negative numbers.
 
-- To view the code and gain a deeper understanding, please refer to the calculator.py file located under the src folder in this [link](https://github.com/raminmohammadi/MLOps/blob/main/src/lab1/calculator.py).
-
-> **Note:** <br>
-Whenever you want to push files to your repository follow this step
-[Adding and Pushing Your Project Code to GitHub](#adding-and-pushing-your-project-code-to-github)
 
 ## Step 4: Creating tests using Pytest and Unittests
 - In this step, we'll set up unit tests for the functions in our calculator.py script using two popular testing frameworks: [pytest](https://docs.pytest.org/en/7.4.x/) and [unittest](https://docs.python.org/3/library/unittest.html). Unit testing ensures that individual components of your code work as expected, helping you catch and fix bugs early in the development process.
