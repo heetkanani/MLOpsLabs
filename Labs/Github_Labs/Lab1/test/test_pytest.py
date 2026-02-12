@@ -2,7 +2,7 @@ import pytest
 from src import calculator
 
 def test_fun1():
-    assert calculator.fun1(2, 2) == 5
+    assert calculator.fun1(2, 3) == 5
     assert calculator.fun1(5,0) == 5
     assert calculator.fun1 (-1, 1) == 0
     assert calculator.fun1 (-1, -1) == -2
