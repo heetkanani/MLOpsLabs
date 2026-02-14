@@ -221,7 +221,7 @@ Please refer [this](https://github.com/raminmohammadi/MLOps/blob/main/Github_Lab
 ### 1. Clone and Setup
 ```bash
 git clone https://github.com/heetkanani/MLOpsLabs.git
-cd Lab1
+cd MLOpsLabs\Labs\Github_Labs\Lab1
 python -m venv github_lab_02
 github_lab_02\Scripts\activate
 pip install -r requirements.txt
