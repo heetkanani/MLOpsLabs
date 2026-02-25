@@ -50,7 +50,7 @@ def build_dbscan_model(data, kmeans_output):
 # Define default arguments for your DAG
 default_args = {
     'owner': 'Heet Kanani',
-    'start_date': datetime(2025, 1, 15),
+    'start_date': datetime(2026, 2, 25),
     'retries': 0,  # Number of retries in case of task failure
     'retry_delay': timedelta(minutes=5),  # Delay before retries
 }
