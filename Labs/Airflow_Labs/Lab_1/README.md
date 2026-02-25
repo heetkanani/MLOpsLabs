@@ -1,11 +1,11 @@
-# Airflow lab
+# Airflow lab 1 - Overall Lab 3 Assignment
 
 - In order to install Airflow using docker you can watch our [Airflow Lab1 Tutorial Video](https://youtu.be/exFSeGUbn4Q?feature=shared)
 - For latest step-by-step instructions, check out this blog - [AirFlow Lab-1](https://www.mlwithramin.com/blog/airflow-lab1)
 
 ### ML Model
 
-This script is designed for data clustering using K-Means clustering and determining the optimal number of clusters using the elbow method. It provides functionality to load data from a CSV file, perform data preprocessing, build and save a K-Means clustering model, and determine the number of clusters based on the elbow method.
+This script is designed for data clustering using K-Means clustering and determining the optimal number of clusters using the elbow method. It provides functionality to load data from a CSV file, perform data preprocessing, build and save a K-Means clustering model, and determine the number of clusters based on the elbow method. Additionally, a DBSCAN (Density-Based Spatial Clustering of Applications with Noise) model is included as an alternative clustering approach. Unlike KMeans, DBSCAN does not require specifying the number of clusters upfront and is capable of detecting noise points and outliers in the dataset.
 
 #### Prerequisites
 
@@ -15,25 +15,6 @@ Before using this script, make sure you have the following libraries installed:
 - scikit-learn (sklearn)
 - kneed
 - pickle
-
-#### Usage
-
-You can use this script to perform K-Means clustering on your dataset as follows:
-
-```python
-# Load the data
-data = load_data()
-
-# Preprocess the data
-preprocessed_data = data_preprocessing(data)
-
-# Build and save the clustering model
-sse_values = build_save_model(preprocessed_data, 'clustering_model.pkl')
-
-# Load the saved model and determine the number of clusters
-result = load_model_elbow('clustering_model.pkl', sse_values)
-print(result)
-```
 
 #### Functions
 
@@ -52,17 +33,24 @@ print(result)
      ```
 
 3. **build_save_model(data, filename)**
-   - *Description:* Builds a K-Means clustering model, saves it to a file, and returns SSE values.
+   - *Description:* Builds a DB_SCAN model, saves it to a file, and returns SSE values.
    - *Usage:*
      ```python
-     sse_values = build_save_model(preprocessed_data, 'clustering_model.pkl')
+     sse_values = build_save_model(preprocessed_data, 'dbscan_model.pkl')
      ```
 
-4. **load_model_elbow(filename, sse)**
-   - *Description:* Loads a saved K-Means clustering model and determines the number of clusters using the elbow method.
+4. **load_model_task = (filename, sse)**
+   - *Description:* Loads a saved  DB_SCAN clustering model and determines the number of clusters using the elbow method.
    - *Usage:*
      ```python
-     result = load_model_elbow('clustering_model.pkl', sse_values)
+      result = load_model_elbow('dbscan_model.pkl', sse_values)
+
+5. **build_dbscan_model(data, kmeans_output)**
+   - *Description:* Builds a DBSCAN clustering model on the preprocessed data, logs the number of clusters and noise points found, computes the Silhouette Score, and saves the model to a file.
+   - *Usage:*
+     ```python
+          labels = build_dbscan_model(preprocessed_data, kmeans_output)
+
      ```
 ### Airflow Setup
 
