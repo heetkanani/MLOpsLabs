@@ -275,7 +275,7 @@ Task dependencies are defined using the >> operator. In this case, the tasks are
 #### If this script is run directly, allow command-line interaction with the DAG
 ```python
 if __name__ == "__main__":
-    dag.cli()
+    dag.test()
 ```
 - Lastly, the script allows for command-line interaction with the DAG. When the script is run directly, the dag.cli() function is called, providing the ability to trigger and manage the DAG from the command line.
 - This script defines a comprehensive Airflow DAG for a data processing and modeling workflow, with clear task dependencies and default arguments.
@@ -288,51 +288,82 @@ This guide provides detailed steps to set up and run an Apache Airflow Directed 
 
 - Docker: Make sure Docker is installed and running on your system.
 
-#### Step 1: Directory Structure
+### Directory structure and steps to run it
 
-Ensure your project has the following directory structure:
-
-```plaintext
-your_airflow_project/
-├── dags/
-│   ├── airflow.py     # Your DAG script
-├── src/
-│   ├── lab.py                # Data processing and modeling functions
-├── data/                       # Directory for data (if needed)
-├── docker-compose.yaml         # Docker Compose configuration
-```
-
-#### Step 2: Docker Compose Configuration
-Create a docker-compose.yaml file in the project root directory. This file defines the services and configurations for running Airflow in a Docker container.
-
-#### Step 3: Start the Docker containers by running the following command
+#### Project Directory Structure
 
 ```plaintext
-docker compose up
+Labs/
+└── Airflow_Labs/
+    ├── assets/
+    ├── Lab_1/
+    │   ├── config/
+    │   ├── dags/
+    │   │   ├── __pycache__/
+    │   │   ├── data/
+    │   │   │   ├── file.csv
+    │   │   │   └── test.csv
+    │   │   ├── model/
+    │   │   │   ├── model.sav
+    │   │   │   └── dbscan_model.pkl
+    │   │   ├── src/
+    │   │   │   └── lab.py
+    │   │   └── airflow.py
+    │   └── setup.sh
+    └── README.md
 ```
 
-Wait until you see the log message indicating that the Airflow webserver is running:
+#### Model used: DBSCAN (Density-Based Spatial Clustering)
 
-```plaintext
-app-airflow-webserver-1 | 127.0.0.1 - - [17/Feb/2023:09:34:29 +0000] "GET /health HTTP/1.1" 200 141 "-" "curl/7.74.0"
+#### Updated DAG Pipeline Flow
+
+```
+load_data → data_preprocessing → build_save_model  → load_model_elbow → build_dbscan_task
 ```
 
-#### Step 4: Access Airflow Web Interface
-- Open a web browser and navigate to http://localhost:8080.
+#### Key Changes Made
 
-- Log in with the credentials set in the .env file or use the default credentials (username: admin, password: admin).
+1. **`dags/airflow.py`** — Added the `build_dbscan_model` function and a new `build_dbscan_task` PythonOperator at the end of the pipeline. Also added `schedule_interval='@weekly'` and `tags=['ml', 'clustering', 'lab1']` to the DAG definition.
 
-- Once logged in, you'll be on the Airflow web interface.
+#### Steps to Run This Lab\
+1. Clone the repo:
 
-#### Step 5: Trigger the DAG
-- In the Airflow web interface, navigate to the "DAGs" page.
+    ```bash
+    git clone https://github.com/heetkanani/MLOpsLabs.git
+    ```
 
-- You should see the "your_python_dag" listed.
+2. Navigate to the Lab_1 directory:
 
-- To manually trigger the DAG, click on the "Trigger DAG" button or enable the DAG by toggling the switch to the "On" position.
+    ```bash
+    cd MLOps/MLOpsLabs/Labs/Airflow_Labs/Lab_1
+    ```
 
-- Monitor the progress of the DAG in the Airflow web interface. You can view logs, task status, and task execution details.
+3. Create the `.env` file for the Airflow user ID:
 
-#### Step 6: Pipeline Outputs
+    ```bash
+    echo -e "AIRFLOW_UID=$(id -u)" > .env
+    ```
 
-- Once the DAG completes its execution, check any output or artifacts produced by your functions and tasks. 
+4. Initialize the Airflow database:
+
+    ```bash
+    docker compose up airflow-init
+    ```
+
+5. Start all Airflow services:
+
+    ```bash
+    docker compose up
+    ```
+
+6. Wait for the webserver to be healthy, then open http://localhost:8080 and log in with username `airflow2` and password `airflow2`.
+
+7. Find the DAG named **`Heet_Kanani_Airflow_Lab1`**, toggle it on, and click **Trigger DAG**.
+
+8. Monitor all 5 tasks in the Grid or Graph view. On successful completion, both `model.sav` and `dbscan_model.pkl` will be saved under the `dags/model/` directory.
+
+9. To stop and clean up:
+
+    ```bash
+    docker compose down
+    ```
