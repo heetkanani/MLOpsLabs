@@ -288,7 +288,7 @@ This guide provides detailed steps to set up and run an Apache Airflow Directed 
 
 - Docker: Make sure Docker is installed and running on your system.
 
-### Directory structure and steps to run it
+### Directory structure and Steps to run it
 
 #### Project Directory Structure
 
@@ -317,7 +317,7 @@ Labs/
 #### Updated DAG Pipeline Flow
 
 ```
-load_data → data_preprocessing → build_save_model  → load_model_elbow → build_dbscan_task
+load_data → data_preprocessing → build_save_model  → load_model_task → build_dbscan_task
 ```
 
 #### Key Changes Made
