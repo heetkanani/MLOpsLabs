@@ -304,7 +304,6 @@ Labs/
     │   │   │   ├── file.csv
     │   │   │   └── test.csv
     │   │   ├── model/
-    │   │   │   ├── model.sav
     │   │   │   └── dbscan_model.pkl
     │   │   ├── src/
     │   │   │   └── lab.py
@@ -360,7 +359,7 @@ load_data → data_preprocessing → build_save_model  → load_model_elbow → 
 
 7. Find the DAG named **`Heet_Kanani_Airflow_Lab1`**, toggle it on, and click **Trigger DAG**.
 
-8. Monitor all 5 tasks in the Grid or Graph view. On successful completion, both `model.sav` and `dbscan_model.pkl` will be saved under the `dags/model/` directory.
+8. Monitor all 5 tasks in the Grid or Graph view. On successful completion `dbscan_model.pkl` will be saved under the `dags/model/` directory.
 
 9. To stop and clean up:
 
