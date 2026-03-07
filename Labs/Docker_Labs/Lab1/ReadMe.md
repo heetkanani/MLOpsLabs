@@ -2,7 +2,7 @@
 
 This Lab trains a Random Forest classifier on the Iris dataset using Scikit-Learn and provides a REST API.
 
-## Project Structure
+## Lab Structure
 
 ```
 Lab1/
@@ -21,7 +21,7 @@ Lab1/
 └── artifacts/           # Output directory for trained models
 ```
 
-## Lab 1 Setup and steps to ru the lab
+## Lab 1 Setup and steps to run the lab
 
 ### Using Docker Compose
 
@@ -59,7 +59,7 @@ docker run --rm -v ${PWD}/artifacts:/app/artifacts lab4-train
 **API service:**
 ```bash
 # Build the API image
-docker build -f Dockerfile.api -t lab4-docker .
+docker build -f dockerfile -t lab4-docker .
 
 # Run the API container
 docker run --rm -p 5000:5000 -v ${PWD}/artifacts:/app/artifacts lab4-docker
@@ -85,7 +85,7 @@ This is used to check is the api service is up and running
 ```bash
 curl -X POST http://localhost:5000/predict \
   -H "Content-Type: application/json" \
-  -d '{"features": [5.1, 3.5, 1.4, 0.2]}'
+  -d '{"features": [6.7, 3.1, 4.7, 1.5]}'
 ```
 
 This gives the model output
