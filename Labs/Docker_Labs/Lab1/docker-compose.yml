@@ -1,0 +1,28 @@
+version: '3.10'
+
+services:
+  train:
+    build:
+      context: .
+      dockerfile: Dockerfile.train
+    container_name: lab4-train
+    volumes:
+      - ./artifacts:/app/artifacts
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: lab4-docker
+    volumes:
+      - ./artifacts:/app/artifacts
+    ports:
+      - "5000:5000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    depends_on:
+      - train
