@@ -61,7 +61,6 @@ The data is shuffled with a fixed seed (`42`) before splitting at a 75/25 ratio 
 
 ## How to Run
 
-### Option 1 — Google Colab (Recommended)
 
 1. Open a new notebook at [colab.research.google.com](https://colab.research.google.com)
 
@@ -75,19 +74,11 @@ The data is shuffled with a fixed seed (`42`) before splitting at a 75/25 ratio 
    !wget https://archive.ics.uci.edu/ml/machine-learning-databases/dermatology/dermatology.data -qq
    ```
 
-4. **Cell 3** — Paste and run the training script from `lab1_dermatology.py`
+4. **Cell 3** — Paste and run the training script from `Lab1.ipynb`
 
 5. When prompted by W&B, select option `1` to create an account (or `2` to log in), then paste your API key from [wandb.ai/authorize](https://wandb.ai/authorize)
 
 6. After the run completes, click the W&B link printed in the output to view your dashboard
-
-### Option 2 — Local
-
-```bash
-pip install wandb xgboost scikit-learn numpy
-wget https://archive.ics.uci.edu/ml/machine-learning-databases/dermatology/dermatology.data
-python lab1_dermatology.py
-```
 
 ## W&B Integration Summary
 
